@@ -51,22 +51,49 @@ body {
   margin: 0 auto;
   overflow: scroll;
 }
+.item-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 50px;
+}
 
 .item {
+  display: block;
   font-size: 20px;
   padding: 10px;
   letter-spacing: 2px;
   color: #303030;
-  text-align: center;
+  text-align: left;
+  cursor: pointer;
 }
 
-.item:hover {
-  background-color: #e1b4f3;
+.item:hover:not(.item.complete:hover) {
+  font-weight: bold;
 }
 
 .item.complete {
   color: rgba(106, 105, 105, 0.5);
   text-decoration: line-through;
+}
+
+.delete {
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  font-size: 18px;
+  font-weight: 300;
+  color: #e7d0d0;
+  border: none;
+  background-color: transparent;
+  float: right;
+  cursor: pointer;
+}
+
+.delete:hover {
+  background-color: #b9b5b5af;
+  color: #f3f3f3;
+  font-weight: 500;
 }
 
 #add-form {
@@ -113,10 +140,10 @@ body {
   color: #fbfbfb;
   font-size: 30px;
   cursor: pointer;
-  transition: tansform 0.3s linear;
+  transition: transform 0.1s linear;
 }
 
 .btn:active {
   transform-origin: center center;
-  transform: scale(0.8) translate(-50%, 50%);
+  transform: scale(0.9) translate(-55%, 55%);
 }

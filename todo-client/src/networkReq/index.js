@@ -19,3 +19,8 @@ export async function updateCompleteById(id, completed) {
   const contentType = { headers: { 'Content-Type': 'application/json' } };
   await axios.patch(`${BASE_URL}/${id}`, completedJson, contentType);
 }
+
+export async function deleteTodoById(id) {
+  const res = await axios.delete(`${BASE_URL}/${id}`);
+  return res.data;
+}
