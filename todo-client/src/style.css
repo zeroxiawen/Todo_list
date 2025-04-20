@@ -1,3 +1,5 @@
+@import './scss/loading.css';
+
 * {
   font-family: Roboto, sans-serif;
   margin: 0;
@@ -9,7 +11,6 @@ body {
   height: 100vh;
   width: 100vw;
   background: linear-gradient(135deg, #d074e4 0%, #a9dcff 100%);
-  position: relative;
   overflow: hidden;
 }
 
@@ -17,7 +18,7 @@ body {
   width: 500px;
   background-color: #fbfbfb;
   border-radius: 5px;
-  position: absolute;
+  position: relative;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -50,6 +51,7 @@ body {
   height: 245px;
   margin: 0 auto;
   overflow: scroll;
+  position: relative;
 }
 .item-container {
   display: flex;
@@ -136,14 +138,18 @@ body {
   position: absolute;
   bottom: 0;
   left: 50%;
-  transform: translate(-50%, 50%);
   color: #fbfbfb;
   font-size: 30px;
   cursor: pointer;
-  transition: transform 0.1s linear;
+  transform: translate(-50%, 50%);
+  transform-origin: center center;
 }
 
 .btn:active {
-  transform-origin: center center;
-  transform: scale(0.9) translate(-55%, 55%);
+  transform: translate(-50%, 50%) scale(0.9);
+  transition: transform 0.1s linear;
+}
+
+.bar-12 {
+  transform: translate(-50%, -50%) rotate(360deg);
 }

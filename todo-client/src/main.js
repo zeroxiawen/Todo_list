@@ -1,12 +1,13 @@
 import './style.css';
+import { LoadingAnimation } from './loading/loading';
 import {
   getAllTodos,
   updateCompleteById,
   addNewItem,
   deleteTodoById,
-} from './networkReq/index';
+} from './networkReq/fetch';
 
-// document.querySelector('#panel').innerHTML = ;
+// document.querySelector('#panel').innerHTML = "";
 const weekNames = [
   'Sunday',
   'Monday',

@@ -1,4 +1,5 @@
 import axios from 'axios';
+import '../scss/loading.css';
 
 const BASE_URL = 'http://localhost:3500/api/todos';
 
