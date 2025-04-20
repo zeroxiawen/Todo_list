@@ -1,4 +1,5 @@
 import axios from 'axios';
+import '../scss/loading.css';
 
 const BASE_URL = 'http://localhost:3500/api/todos';
 
@@ -18,4 +19,9 @@ export async function updateCompleteById(id, completed) {
   const completedJson = { completed };
   const contentType = { headers: { 'Content-Type': 'application/json' } };
   await axios.patch(`${BASE_URL}/${id}`, completedJson, contentType);
+}
+
+export async function deleteTodoById(id) {
+  const res = await axios.delete(`${BASE_URL}/${id}`);
+  return res.data;
 }

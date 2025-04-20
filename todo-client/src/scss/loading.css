@@ -1,0 +1,126 @@
+.loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  transform: translate(-50%, -50%);
+}
+
+.bar {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 3px;
+  width: 6px;
+  height: 15px;
+  transform-origin: bottom center;
+  background-color: rgb(0, 0, 0);
+}
+
+@keyframes spin {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.2;
+  }
+}
+.bar-index-1 {
+  transform: translateX(-50%) rotate(25.7142857143deg) translateY(-15px);
+  opacity: 0.0714285714;
+  animation: spin 1.2s linear infinite;
+  animation-delay: 0s;
+}
+
+.bar-index-2 {
+  transform: translateX(-50%) rotate(51.4285714286deg) translateY(-15px);
+  opacity: 0.1428571429;
+  animation: spin 1.2s linear infinite;
+  animation-delay: 0.0857142857s;
+}
+
+.bar-index-3 {
+  transform: translateX(-50%) rotate(77.1428571429deg) translateY(-15px);
+  opacity: 0.2142857143;
+  animation: spin 1.2s linear infinite;
+  animation-delay: 0.1714285714s;
+}
+
+.bar-index-4 {
+  transform: translateX(-50%) rotate(102.8571428571deg) translateY(-15px);
+  opacity: 0.2857142857;
+  animation: spin 1.2s linear infinite;
+  animation-delay: 0.2571428571s;
+}
+
+.bar-index-5 {
+  transform: translateX(-50%) rotate(128.5714285714deg) translateY(-15px);
+  opacity: 0.3571428571;
+  animation: spin 1.2s linear infinite;
+  animation-delay: 0.3428571429s;
+}
+
+.bar-index-6 {
+  transform: translateX(-50%) rotate(154.2857142857deg) translateY(-15px);
+  opacity: 0.4285714286;
+  animation: spin 1.2s linear infinite;
+  animation-delay: 0.4285714286s;
+}
+
+.bar-index-7 {
+  transform: translateX(-50%) rotate(180deg) translateY(-15px);
+  opacity: 0.5;
+  animation: spin 1.2s linear infinite;
+  animation-delay: 0.5142857143s;
+}
+
+.bar-index-8 {
+  transform: translateX(-50%) rotate(205.7142857143deg) translateY(-15px);
+  opacity: 0.5714285714;
+  animation: spin 1.2s linear infinite;
+  animation-delay: 0.6s;
+}
+
+.bar-index-9 {
+  transform: translateX(-50%) rotate(231.4285714286deg) translateY(-15px);
+  opacity: 0.6428571429;
+  animation: spin 1.2s linear infinite;
+  animation-delay: 0.6857142857s;
+}
+
+.bar-index-10 {
+  transform: translateX(-50%) rotate(257.1428571429deg) translateY(-15px);
+  opacity: 0.7142857143;
+  animation: spin 1.2s linear infinite;
+  animation-delay: 0.7714285714s;
+}
+
+.bar-index-11 {
+  transform: translateX(-50%) rotate(282.8571428571deg) translateY(-15px);
+  opacity: 0.7857142857;
+  animation: spin 1.2s linear infinite;
+  animation-delay: 0.8571428571s;
+}
+
+.bar-index-12 {
+  transform: translateX(-50%) rotate(308.5714285714deg) translateY(-15px);
+  opacity: 0.8571428571;
+  animation: spin 1.2s linear infinite;
+  animation-delay: 0.9428571429s;
+}
+
+.bar-index-13 {
+  transform: translateX(-50%) rotate(334.2857142857deg) translateY(-15px);
+  opacity: 0.9285714286;
+  animation: spin 1.2s linear infinite;
+  animation-delay: 1.0285714286s;
+}
+
+.bar-index-14 {
+  transform: translateX(-50%) rotate(360deg) translateY(-15px);
+  opacity: 1;
+  animation: spin 1.2s linear infinite;
+  animation-delay: 1.1142857143s;
+}/*# sourceMappingURL=loading.css.map */

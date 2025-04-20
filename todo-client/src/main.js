@@ -1,11 +1,13 @@
 import './style.css';
+import { LoadingAnimation } from './loading/loading';
 import {
   getAllTodos,
   updateCompleteById,
   addNewItem,
-} from './networkReq/index';
+  deleteTodoById,
+} from './networkReq/fetch';
 
-// document.querySelector('#panel').innerHTML = ;
+// document.querySelector('#panel').innerHTML = "";
 const weekNames = [
   'Sunday',
   'Monday',
@@ -41,41 +43,57 @@ const form = document.getElementById('add-form');
 
 dateTitle.textContent = `${week}, ${date} ${month} ${year}`;
 
-getAllTodos().then((todos) => {
-  list.innerHTML = '';
-  todos.forEach((todo) => {
-    generateItem(todo, list);
+getAllTodos()
+  .then((todos) => {
+    list.innerHTML = '';
+    todos.forEach((todo) => {
+      renderItem(todo, list);
+    });
+  })
+  .catch((err) => {
+    console.error(err);
   });
-});
 
 form.addEventListener('submit', (e) => {
   e.preventDefault();
   const inputEl = document.getElementById('item');
   const titleText = inputEl.value;
+  if (!titleText) {
+    alert('Please enter valid text.');
+    return;
+  }
+
   addNewItem(titleText)
     .then((todo) => {
-      generateItem(todo, list);
+      renderItem(todo, list);
       inputEl.value = '';
     })
     .catch((err) => {
-      console.log(err);
+      console.error(err);
     });
 });
 
 // Initialize todoElement
-function generateItem(todo, list) {
+function renderItem(todo, list) {
+  const todoContainerEl = document.createElement('div');
+  todoContainerEl.className = 'item-container';
+  list.appendChild(todoContainerEl);
   const todoEl = document.createElement('li');
   todoEl.className = 'item';
   todoEl.textContent = todo.title;
   todoEl.setAttribute('id', todo.id);
-  list.appendChild(todoEl);
+  todoContainerEl.appendChild(todoEl);
   if (todo.completed) {
     todoEl.classList.add('complete');
   }
+  const deleteBtn = document.createElement('button');
+  deleteBtn.className = 'delete';
+  deleteBtn.textContent = 'X';
+  todoContainerEl.appendChild(deleteBtn);
+  deleteItem(deleteBtn);
 }
 
 // add event listener for toggling completion
-
 list.addEventListener('contextmenu', (e) => {
   e.preventDefault();
   const id = e.target.id;
@@ -88,3 +106,18 @@ list.addEventListener('contextmenu', (e) => {
       console.log(err);
     });
 });
+
+// delete todo
+function deleteItem(element) {
+  element.addEventListener('click', (e) => {
+    const todoId = e.currentTarget.previousElementSibling.id;
+    deleteTodoById(todoId)
+      .then((res) => {
+        console.log(res);
+        element.parentElement.remove();
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  });
+}
