@@ -1,5 +1,4 @@
 import './style.css';
-import { LoadingAnimation } from './loading/loading';
 import {
   getAllTodos,
   updateCompleteById,
@@ -32,7 +31,6 @@ const monthNames = [
   'Dec',
 ];
 const dateTitle = document.getElementById('date');
-const list = document.getElementById('list');
 const d = new Date();
 const day = d.getDay(); // 0 - 6
 const week = weekNames[day];
@@ -78,38 +76,44 @@ function renderItem(todo, list) {
   const todoContainerEl = document.createElement('div');
   todoContainerEl.className = 'item-container';
   list.appendChild(todoContainerEl);
+
   const todoEl = document.createElement('li');
   todoEl.className = 'item';
-  todoEl.textContent = todo.title;
   todoEl.setAttribute('id', todo.id);
   todoContainerEl.appendChild(todoEl);
-  if (todo.completed) {
-    todoEl.classList.add('complete');
-  }
+  if (todo.completed) todoEl.classList.add('complete');
+  const todoTextEl = document.createElement('span');
+  todoTextEl.textContent = todo.title;
+  todoEl.appendChild(todoTextEl);
+
   const deleteBtn = document.createElement('button');
   deleteBtn.className = 'delete';
-  deleteBtn.textContent = 'X';
+  deleteBtn.textContent = 'x';
   todoContainerEl.appendChild(deleteBtn);
+  toggleComplete(todoEl);
   deleteItem(deleteBtn);
 }
 
 // add event listener for toggling completion
-list.addEventListener('contextmenu', (e) => {
-  e.preventDefault();
-  const id = e.target.id;
-  const isComplete = e.target.classList.contains('complete');
-  updateCompleteById(id, !isComplete)
-    .then(() => {
-      e.target.classList.toggle('complete');
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-});
+function toggleComplete(itemEl) {
+  itemEl.addEventListener('click', (e) => {
+    const clickedItem = e.currentTarget;
+    const id = clickedItem.id;
+    const isComplete = clickedItem.classList.contains('complete');
+    updateCompleteById(id, !isComplete)
+      .then(() => {
+        clickedItem.classList.toggle('complete');
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  });
+}
 
 // delete todo
 function deleteItem(element) {
   element.addEventListener('click', (e) => {
+    e.stopPropagation();
     const todoId = e.currentTarget.previousElementSibling.id;
     deleteTodoById(todoId)
       .then((res) => {
@@ -121,3 +125,8 @@ function deleteItem(element) {
       });
   });
 }
+
+// Bugs I have met:
+// 1、 Event Bubbling -》 Solution: e.stopPropagation
+// 2、 get DOM elements before data fetching and render finished
+// 3、
